@@ -1,6 +1,6 @@
 // 标明领域、项目的属性对
-areaKV = ["PARA", "Area"]
-projectKV = ["PARA", "Project"]
+const areaKV = ["PARA", "Area"]
+const projectKV = ["PARA", "Project"]
 
 
 // 上级目录
@@ -22,7 +22,7 @@ if(upAreas.length) {
 let downProjects = []
 
 if(dv.current()?.[areaKV[0]] == areaKV[1]) {
-    downProjects = (dv.current().file.outlinks).filter(link => {
+    downProjects = (dv.current()?.file?.outlinks).filter(link => {
         if(dv.pages(`"${ link.path }"`)[0]?.[projectKV[0]] == projectKV[1])
             return true
         return false
