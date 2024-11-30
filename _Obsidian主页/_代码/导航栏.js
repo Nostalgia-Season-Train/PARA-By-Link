@@ -61,7 +61,7 @@ let upAreas = (dv.current()?.file?.inlinks).filter(isArea)
 
 if (upAreas.length) {
     dv.span("上级目录：")
-    dv.span(upAreas.join(" | "))
+    dv.span(upAreas.join("丨"))
 }
 
 // 反向链接：页面 A -> 页面 B，称 A 为 B 的反向链接，当 B 没有上级目录时在导航栏显示 A
@@ -70,7 +70,7 @@ if (!upAreas.length) {
 
     if (backLinks.length) {
         dv.span("反向链接：")
-        dv.span(backLinks.join(", "))
+        dv.span(backLinks.join("，"))
     }
 }
 
