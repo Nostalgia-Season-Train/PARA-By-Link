@@ -1,3 +1,8 @@
 {
-  "propertiesInDocument": "source"
+  "promptDelete": false,
+  "alwaysUpdateLinks": true,
+  "showUnsupportedFiles": true,
+  "propertiesInDocument": "source",
+  "useTab": false,
+  "attachmentFolderPath": "./"
 }
