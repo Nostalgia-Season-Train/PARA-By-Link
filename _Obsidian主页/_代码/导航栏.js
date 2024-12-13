@@ -1,10 +1,6 @@
 // 类型标明：
 // 标明卡片、领域、项目的属性：[属性名, 属性值]
 // 注：PARA: Area 和 PARA: Project 是为了兼容上个版本流动式 PARA
-const cardKV = [
-    ["category", "卡片笔记"],
-]
-
 const areaKV = [
     ["category", "内容地图"],
     ["PARA", "Area"]
@@ -13,6 +9,14 @@ const areaKV = [
 const projectKV = [
     ["category", "项目文档"],
     ["PARA", "Project"]
+]
+
+const starKV = [
+    ["status", "收藏"]
+]
+
+const archiveKV = [
+    ["status", "归档"]
 ]
 
 // 导航栏样式：
@@ -33,8 +37,26 @@ const getPath = (pageOrLink) => {
     return path
 }
 
-// 根据属性判断是否为领域、项目
-// dv.pages() 返回数组，路径查询只有一个结果，直接从偏移 0 取就行
+// 是否收藏
+const isStar = (path) => {
+    for (i = 0; i < starKV.length; i++)
+        if (dv.pages(`"${path}"`)[0]?.[starKV[i][0]] == [starKV[i][1]])
+            return true
+    return false
+}
+
+// 是否归档（未归档返回真）
+const isArchive = (pageOrLink) => {
+    let path = getPath(pageOrLink)
+
+    for (i = 0; i < archiveKV.length; i++)
+        if (dv.pages(`"${path}"`)[0]?.[archiveKV[i][0]] != [archiveKV[i][1]])
+            return true
+    return false
+}
+
+// 是否为领域、项目
+// dv.pages() 返回数组，dv.pages(path) 查询路径只有一个结果，直接从偏移 0 取就行
 const isArea = (pageOrLink) => {
     let path = getPath(pageOrLink)
 
@@ -57,7 +79,7 @@ const isProject = (pageOrLink) => {
 // ======== 显示模块 ========
 
 // 上级目录：领域 A -> 页面 B，称 A 为 B 的上级目录，在导航栏显示 A
-let upAreas = (dv.current()?.file?.inlinks).filter(isArea)
+let upAreas = (dv.current()?.file?.inlinks).filter(isArea).filter(isArchive)
 
 if (upAreas.length) {
     dv.span("上级目录：")
@@ -65,20 +87,37 @@ if (upAreas.length) {
 }
 
 // 反向链接：页面 A -> 页面 B，称 A 为 B 的反向链接，当 B 没有上级目录时在导航栏显示 A
-if (!upAreas.length) {
-    let backLinks = dv.current()?.file?.inlinks
+let backLinks = (dv.current()?.file?.inlinks).filter(isArchive)
 
+if (!upAreas.length && backLinks.length) {
     if (backLinks.length) {
         dv.span("反向链接：")
         dv.span(backLinks.join("，"))
     }
 }
 
+// 收藏夹：状态等于收藏的笔记
+// 取得链接的文件的路径，使用 Set 去重，最后还原回数组
+let starPaths = [...new Set((dv.current()?.file?.inlinks?.path).concat(dv.current()?.file?.outlinks?.path))].filter(isStar)
+
+if (starPaths.length) {
+    // 有上级目录或反向链接时换行
+    if (upAreas.length || backLinks.length)
+        dv.span("</br>")
+
+    dv.span("收藏：")
+
+    let stars = []
+    for(i = 0; i < starPaths.length; i++)
+        stars.push(dv.pages(`"${starPaths[i]}"`)[0]?.file?.link)
+    dv.span(stars.join("、"))
+}
+
 // 子项目：领域或项目 A -> 项目 B，称 B 为 A 的子项目，在导航栏以无序列表显示 B（不止一个子项目）
 let downProjects = []
 
 if (isArea(dv.current()) || isProject(dv.current)) {
-    downProjects = (dv.current()?.file?.outlinks).filter(isProject)
+    downProjects = (dv.current()?.file?.outlinks).filter(isProject).filter(isArchive)
 }
 
 if (downProjects.length) {
