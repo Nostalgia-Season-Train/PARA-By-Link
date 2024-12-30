@@ -3,7 +3,7 @@ category: 卡片笔记
 status: 活跃
 ---
 ```dataviewjs
-await dv.view("_Obsidian主页/_代码/导航栏")
+await dv.view("_Obsidian主页/_代码/流动式PARA导航栏")
 ```
 
 C 语言是一门高级编程语言，由 Dennis Ritchie 在贝尔实验室于 1972 年发明
