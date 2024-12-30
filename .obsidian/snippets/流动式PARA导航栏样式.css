@@ -1,0 +1,95 @@
+/* 颜色 */
+/* .theme-light {
+  --parabylink-kanban-1: ;
+  --parabylink-kanban-2: ;
+  --parabylink-kanban-3: ;
+  --parabylink-kanban-4: ;
+  --parabylink-kanban-card: ;
+}
+
+.theme-dark {
+  --parabylink-kanban-1: ;
+  --parabylink-kanban-2: ;
+  --parabylink-kanban-3: ;
+  --parabylink-kanban-4: ;
+  --parabylink-kanban-card: ;
+} */
+
+
+/* === 无序列表 === */
+
+/* 基本样式 */
+.parabylink-nav ul {
+  display: flex;
+  flex-direction: row;
+
+  margin: 2px;
+  padding: 0;
+}
+
+/* 去除圆点 */
+.parabylink-nav ul > li {
+  list-style: none;
+}
+
+/* 去除侧边线 */
+.parabylink-nav ul::before {
+  display: none !important;  /* !important 防止阅读模式下的样式覆盖 */
+}
+
+
+/* === 看板 === */
+
+/* 列表 */
+.parabylink-nav ul:first-child > li {
+  display: flex;
+  flex-direction: column;
+
+  flex: 1 1 25%;
+
+  word-break: break-word;
+
+  margin: 0 0.1rem 0 0.1rem;
+  padding: 0;
+
+  border-radius: 5px;
+}
+.parabylink-nav ul:first-child > li > p {
+  display: flex;
+  justify-content: center;
+
+  margin: 0.25rem;
+}
+
+/* 列表卡片 */
+.parabylink-nav ul ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.parabylink-nav ul ul > li {
+  margin: 0.5rem;
+  margin-top: 0;
+  padding: 0.1rem 0 0.1rem 0.25rem;
+
+  border-radius: 7px;
+}
+
+/* 列表背景 */
+.parabylink-nav ul:first-child > li:nth-child(1) {
+  background-color: var(--parabylink-kanban-1);
+}
+.parabylink-nav ul:first-child > li:nth-child(2) {
+  background-color: var(--parabylink-kanban-2);
+}
+.parabylink-nav ul:first-child > li:nth-child(3) {
+  background-color: var(--parabylink-kanban-3);
+}
+.parabylink-nav ul:first-child > li:nth-child(4) {
+  background-color: var(--parabylink-kanban-4);
+}
+
+/* 列表卡片背景 */
+.parabylink-nav ul ul > li {
+  background-color: var(--parabylink-kanban-card)
+}

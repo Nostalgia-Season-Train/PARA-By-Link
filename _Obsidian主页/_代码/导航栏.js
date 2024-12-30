@@ -20,8 +20,7 @@ const archiveKV = [
 ]
 
 // 导航栏样式：
-// 添加 Blue Topaz 主题下 kanban 样式
-dv.container.classList.add("kanban")
+dv.container.classList.add("parabylink-nav")
 
 
 // ======== 判断模块 ========
@@ -114,21 +113,44 @@ if (starPaths.length) {
 }
 
 // 子项目：领域或项目 A -> 项目 B，称 B 为 A 的子项目，在导航栏以无序列表显示 B（不止一个子项目）
-let downProjects = []
+let projectPaths = []
 
 if (isArea(dv.current()) || isProject(dv.current)) {
-    downProjects = (dv.current()?.file?.outlinks).filter(isProject).filter(isArchive)
+    // 项目链接
+    let projectLinks = ((dv.current()?.file?.outlinks).filter(isProject).filter(isArchive)).values
+
+    // 项目路径（去重）
+    projectLinks.forEach(link => {
+        if (!projectPaths.includes(link?.path))
+            projectPaths.push(link?.path)
+    })
 }
 
-if (downProjects.length) {
-    let result = await dv.query(`
-        LIST rows.file.link
-        WHERE contains("${ downProjects.path }", file.path)
-        GROUP BY file.frontmatter.status as status
-        SORT choice(status = "计划中", "1",
-        choice(status = "正在进行", "2",
-        choice(status = "已完成", "3", "others")))
-    `)
+const path = require('path');
 
-    dv.list(result.value.values)
+if (projectPaths.length) {
+    plan    = "- 计划中\n"
+    ongoing = "- 正在进行\n"
+    finish  = "- 已完成\n"
+    standby = "- 挂起\n"
+
+    for (i = 0; i < projectPaths.length; i++) {
+        projectStatus = dv.pages(`"${projectPaths[i]}"`)[0]?.status
+
+        projectPath = projectPaths[i]
+        projectStem = path.basename(projectPath, path.extname(projectPath))
+        projectLink = `[[${projectPath}|${projectStem}]]`
+
+        if        (projectStatus == "计划中") {
+            plan    += `    - ${projectLink}\n`
+        } else if (projectStatus == "正在进行") {
+            ongoing += `    - ${projectLink}\n`
+        } else if (projectStatus == "已完成") {
+            finish  += `    - ${projectLink}\n`
+        } else if (projectStatus == "挂起") {
+            standby += `    - ${projectLink}\n`
+        }
+    }
+
+    dv.span(`${plan}\n${ongoing}\n${finish}\n${standby}`)
 }
