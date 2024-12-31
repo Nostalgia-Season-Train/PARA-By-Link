@@ -1,3 +1,11 @@
+---
+category: 卡片笔记
+status: 归档
+---
+```dataviewjs
+await dv.view("_Obsidian主页/_代码/流动式PARA导航栏")
+```
+
 # 流动式 PARA 简介
 
 流动式 PARA 框架是本人为了解决卡片笔记和 PARA 冲突而提出的方法

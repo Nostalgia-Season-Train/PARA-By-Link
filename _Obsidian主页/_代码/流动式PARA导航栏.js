@@ -129,17 +129,17 @@ if (isArea(dv.current()) || isProject(dv.current)) {
 const path = require('path');
 
 if (projectPaths.length) {
-    plan    = "- 计划中\n"
-    ongoing = "- 正在进行\n"
-    finish  = "- 已完成\n"
-    standby = "- 挂起\n"
+    let plan    = "- 计划中\n"
+    let ongoing = "- 正在进行\n"
+    let finish  = "- 已完成\n"
+    let standby = "- 挂起\n"
 
     for (i = 0; i < projectPaths.length; i++) {
-        projectStatus = dv.pages(`"${projectPaths[i]}"`)[0]?.status
+        let projectStatus = dv.pages(`"${projectPaths[i]}"`)[0]?.status
 
-        projectPath = projectPaths[i]
-        projectStem = path.basename(projectPath, path.extname(projectPath))
-        projectLink = `[[${projectPath}|${projectStem}]]`
+        let projectPath = projectPaths[i]
+        let projectStem = path.basename(projectPath, path.extname(projectPath))
+        let projectLink = `[[${projectPath}|${projectStem}]]`
 
         if        (projectStatus == "计划中") {
             plan    += `    - ${projectLink}\n`

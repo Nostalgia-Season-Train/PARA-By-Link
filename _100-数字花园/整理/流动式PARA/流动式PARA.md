@@ -34,7 +34,7 @@ status: 笔记状态
 await dv.view("_Obsidian主页/_代码/流动式PARA导航栏")
 ```
 ````
-附：导航栏代码见 [[导航栏.js|_Obsidian主页/_代码/导航栏.js]]
+附：导航栏代码见 [[流动式PARA导航栏.js|_Obsidian主页/_代码/流动式PARA导航栏.js]]
 
 
 # 流动式 PARA 使用
@@ -47,7 +47,7 @@ await dv.view("_Obsidian主页/_代码/流动式PARA导航栏")
 例：[[编程]] -> [[Python]]、[[编程]]-> [[C]]
 
 所属项目：领域或项目 A -> 项目 B，B 是 A 的所属项目
-例：[[Python]] -> [[小程序]]
+例：[[Python]] -> [[文字烟花]]
 
 ## 进阶
 见下

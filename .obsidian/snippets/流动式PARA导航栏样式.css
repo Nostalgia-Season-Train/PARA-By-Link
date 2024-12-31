@@ -1,19 +1,21 @@
 /* 颜色 */
-/* .theme-light {
-  --parabylink-kanban-1: ;
-  --parabylink-kanban-2: ;
-  --parabylink-kanban-3: ;
-  --parabylink-kanban-4: ;
-  --parabylink-kanban-card: ;
+.theme-light {
+  --parabylink-kanban-background: rgb(250,250,250);
+  --parabylink-kanban-1: #FEF08A;
+  --parabylink-kanban-2: #A7F3D0;
+  --parabylink-kanban-3: #BAE6FD;
+  --parabylink-kanban-4: #DDD6FE;
+  --parabylink-kanban-card: rgba(255,255,255,0.65);
 }
 
 .theme-dark {
-  --parabylink-kanban-1: ;
-  --parabylink-kanban-2: ;
-  --parabylink-kanban-3: ;
-  --parabylink-kanban-4: ;
-  --parabylink-kanban-card: ;
-} */
+  --parabylink-kanban-background: rgb(250,250,250,0.01);
+  --parabylink-kanban-1: #713F12;
+  --parabylink-kanban-2: #064E3B;
+  --parabylink-kanban-3: #0C4A6E;
+  --parabylink-kanban-4: #4C1D95;
+  --parabylink-kanban-card: rgba(255,255,255,0.015);
+}
 
 
 /* === 无序列表 === */
@@ -75,18 +77,25 @@
   border-radius: 7px;
 }
 
-/* 列表背景 */
+/* 列表颜色 */
+.parabylink-nav ul:first-child > li:nth-child(n) {
+  background-color: var(--parabylink-kanban-background);
+  border: 0;
+  border-top: 0.25em;
+  border-style: solid;
+}
+
 .parabylink-nav ul:first-child > li:nth-child(1) {
-  background-color: var(--parabylink-kanban-1);
+  border-color: var(--parabylink-kanban-1);
 }
 .parabylink-nav ul:first-child > li:nth-child(2) {
-  background-color: var(--parabylink-kanban-2);
+  border-color: var(--parabylink-kanban-2);
 }
 .parabylink-nav ul:first-child > li:nth-child(3) {
-  background-color: var(--parabylink-kanban-3);
+  border-color: var(--parabylink-kanban-3);
 }
 .parabylink-nav ul:first-child > li:nth-child(4) {
-  background-color: var(--parabylink-kanban-4);
+  border-color: var(--parabylink-kanban-4);
 }
 
 /* 列表卡片背景 */
