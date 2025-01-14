@@ -95,24 +95,7 @@ if (!upAreas.length && backLinks.length) {
     }
 }
 
-// 收藏夹：状态等于收藏的笔记
-// 取得链接的文件的路径，使用 Set 去重，最后还原回数组
-let starPaths = [...new Set((dv.current()?.file?.inlinks?.path).concat(dv.current()?.file?.outlinks?.path))].filter(isStar)
-
-if (starPaths.length) {
-    // 有上级目录或反向链接时换行
-    if (upAreas.length || backLinks.length)
-        dv.span("</br>")
-
-    dv.span("收藏：")
-
-    let stars = []
-    for(i = 0; i < starPaths.length; i++)
-        stars.push(dv.pages(`"${starPaths[i]}"`)[0]?.file?.link)
-    dv.span(stars.join("、"))
-}
-
-// 子项目：领域或项目 A -> 项目 B，称 B 为 A 的子项目，在导航栏以无序列表显示 B（不止一个子项目）
+// 子级项目：领域或项目 A -> 项目 B，称 B 为 A 的子级项目，在导航栏以看板分栏显示 B
 let projectPaths = []
 
 if (isArea(dv.current()) || isProject(dv.current)) {
@@ -137,9 +120,9 @@ if (projectPaths.length) {
     for (i = 0; i < projectPaths.length; i++) {
         let projectStatus = dv.pages(`"${projectPaths[i]}"`)[0]?.status
 
-        let projectPath = projectPaths[i]
-        let projectStem = path.basename(projectPath, path.extname(projectPath))
-        let projectLink = `[[${projectPath}|${projectStem}]]`
+        const projectPath = projectPaths[i]
+        const projectStem = path.basename(projectPath, path.extname(projectPath))
+        const projectLink = `[[${projectPath}|${projectStem}]]`
 
         if        (projectStatus == "计划中") {
             plan    += `    - ${projectLink}\n`
@@ -149,8 +132,23 @@ if (projectPaths.length) {
             finish  += `    - ${projectLink}\n`
         } else if (projectStatus == "挂起") {
             standby += `    - ${projectLink}\n`
+        } else {  // 优先按状态分类，不行按任务分类
+            const taskNumAll    = dv.page(projectPath).file.tasks.length
+            const taskNumFinish = dv.page(projectPath).file.tasks.filter(t => t.completed).length
+
+            if        (taskNumFinish == 0) {
+                plan    += `    - ${projectLink}\n`
+            } else if (taskNumFinish < taskNumAll) {
+                ongoing += `    - ${projectLink}\n`
+            } else if (taskNumFinish == taskNumAll) {
+                finish  += `    - ${projectLink}\n`
+            }
         }
     }
 
-    dv.span(`${plan}\n${ongoing}\n${finish}\n${standby}`)
+    if (standby == "- 挂起\n") {  // 只有项目挂起，才会显示挂起分栏
+        dv.span(`${plan}\n${ongoing}\n${finish}`)
+    } else {
+        dv.span(`${plan}\n${ongoing}\n${finish}\n${standby}`)
+    }
 }
