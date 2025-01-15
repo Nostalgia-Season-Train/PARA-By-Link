@@ -17,7 +17,7 @@
         "createInSameFolderAsActiveFile": false,
         "chooseFromSubfolders": false
       },
-      "appendLink": false,
+      "appendLink": true,
       "openFileInNewTab": {
         "enabled": false,
         "direction": "vertical",
@@ -45,7 +45,7 @@
         "createInSameFolderAsActiveFile": false,
         "chooseFromSubfolders": false
       },
-      "appendLink": false,
+      "appendLink": true,
       "openFileInNewTab": {
         "enabled": false,
         "direction": "vertical",
@@ -73,7 +73,7 @@
         "createInSameFolderAsActiveFile": false,
         "chooseFromSubfolders": false
       },
-      "appendLink": false,
+      "appendLink": true,
       "openFileInNewTab": {
         "enabled": false,
         "direction": "vertical",
