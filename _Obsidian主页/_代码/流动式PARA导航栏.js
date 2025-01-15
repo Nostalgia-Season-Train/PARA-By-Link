@@ -1,3 +1,6 @@
+// 作者：旧日丨四季列车
+// 使用方法：https://github.com/Nostalgia-Season-Train/PARA-By-Link
+
 // 类型标明：
 // 标明卡片、领域、项目的属性：[属性名, 属性值]
 // 注：PARA: Area 和 PARA: Project 是为了兼容上个版本流动式 PARA
@@ -9,10 +12,6 @@ const areaKV = [
 const projectKV = [
     ["category", "项目文档"],
     ["PARA", "Project"]
-]
-
-const starKV = [
-    ["status", "收藏"]
 ]
 
 const archiveKV = [
@@ -36,40 +35,31 @@ const getPath = (pageOrLink) => {
     return path
 }
 
-// 是否收藏
-const isStar = (path) => {
-    for (i = 0; i < starKV.length; i++)
-        if (dv.pages(`"${path}"`)[0]?.[starKV[i][0]] == [starKV[i][1]])
-            return true
-    return false
-}
-
 // 是否归档（未归档返回真）
 const isArchive = (pageOrLink) => {
-    let path = getPath(pageOrLink)
+    const path = getPath(pageOrLink)
 
     for (i = 0; i < archiveKV.length; i++)
-        if (dv.pages(`"${path}"`)[0]?.[archiveKV[i][0]] != [archiveKV[i][1]])
+        if (dv.page(path)?.[archiveKV[i][0]] != [archiveKV[i][1]])
             return true
     return false
 }
 
 // 是否为领域、项目
-// dv.pages() 返回数组，dv.pages(path) 查询路径只有一个结果，直接从偏移 0 取就行
 const isArea = (pageOrLink) => {
-    let path = getPath(pageOrLink)
+    const path = getPath(pageOrLink)
 
     for (i = 0; i < areaKV.length; i++)
-        if (dv.pages(`"${path}"`)[0]?.[areaKV[i][0]] == areaKV[i][1])
+        if (dv.page(path)?.[areaKV[i][0]] == areaKV[i][1])
             return true
     return false
 }
 
 const isProject = (pageOrLink) => {
-    let path = getPath(pageOrLink)
+    const path = getPath(pageOrLink)
 
     for (i = 0; i < projectKV.length; i++)
-        if (dv.pages(`"${path}"`)[0]?.[projectKV[i][0]] == projectKV[i][1])
+        if (dv.page(path)?.[projectKV[i][0]] == projectKV[i][1])
             return true
     return false
 }
@@ -98,7 +88,7 @@ if (!upAreas.length && backLinks.length) {
 // 子级项目：领域或项目 A -> 项目 B，称 B 为 A 的子级项目，在导航栏以看板分栏显示 B
 let projectPaths = []
 
-if (isArea(dv.current()) || isProject(dv.current)) {
+if (isArea(dv.current()) || isProject(dv.current())) {
     // 项目链接
     let projectLinks = ((dv.current()?.file?.outlinks).filter(isProject).filter(isArchive)).values
 
