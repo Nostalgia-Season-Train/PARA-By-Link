@@ -19,7 +19,7 @@ const projectKV = [
 ]
 
 const archiveKV = [
-    ["archive", "true"]
+    ["archive", true]
 ]
 
 // 导航栏样式：
@@ -44,7 +44,7 @@ const isArchive = (pageOrLink) => {
     const path = getPath(pageOrLink)
 
     for (i = 0; i < archiveKV.length; i++)
-        if (dv.page(path)?.[archiveKV[i][0]] != [archiveKV[i][1]])
+        if (dv.page(path)?.[archiveKV[i][0]] != archiveKV[i][1])
             return true
     return false
 }
