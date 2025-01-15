@@ -1,5 +1,5 @@
 ---
-category: 卡片笔记
+category: 卡片
 status: 活跃
 ---
 ```dataviewjs
@@ -58,7 +58,7 @@ await dv.view("_Obsidian主页/_代码/流动式PARA导航栏")
 ## 笔记属性
 笔记类型：
 - 卡片：
-    - category: 卡片笔记 ^[占位符，暂时没用]
+    - category: 卡片 ^[占位符，暂时没用]
 - 领域（内容地图）：
     - category: 内容地图
     - PARA: Area ^[v2.0 版本标识，可以继续使用]

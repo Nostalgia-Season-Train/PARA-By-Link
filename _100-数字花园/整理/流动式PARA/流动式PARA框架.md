@@ -1,5 +1,5 @@
 ---
-category: 卡片笔记
+category: 卡片
 status: 归档
 ---
 ```dataviewjs
