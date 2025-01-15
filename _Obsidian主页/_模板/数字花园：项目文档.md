@@ -1,5 +1,5 @@
 ---
-category: 项目文档
+category: 项目
 ---
 ```dataviewjs
 await dv.view("_Obsidian主页/_代码/流动式PARA导航栏")

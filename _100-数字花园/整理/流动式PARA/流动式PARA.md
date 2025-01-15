@@ -63,7 +63,7 @@ await dv.view("_Obsidian主页/_代码/流动式PARA导航栏")
     - category: 领域
     - PARA: Area ^[v2.0 版本标识，可以继续使用]
 - 项目：
-    - category: 项目文档
+    - category: 项目
     - PARA: Project ^[同上]
 
 笔记状态：
