@@ -1,5 +1,5 @@
 ---
-category: 内容地图
+category: 领域
 ---
 ```dataviewjs
 await dv.view("_Obsidian主页/_代码/流动式PARA导航栏")

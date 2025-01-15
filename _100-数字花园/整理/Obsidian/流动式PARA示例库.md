@@ -1,5 +1,5 @@
 ---
-category: 内容地图
+category: 领域
 status: 活跃
 ---
 ```dataviewjs
