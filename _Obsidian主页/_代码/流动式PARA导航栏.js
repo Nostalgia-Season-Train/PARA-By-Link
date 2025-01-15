@@ -4,18 +4,22 @@
 // 类型标明：
 // 标明卡片、领域、项目的属性：[属性名, 属性值]
 // 注：PARA: Area 和 PARA: Project 是为了兼容上个版本流动式 PARA
+const cardKV = [
+    ["category", "卡片"]
+]
+
 const areaKV = [
-    ["category", "内容地图"],
+    ["category", "领域"],
     ["PARA", "Area"]
 ]
 
 const projectKV = [
-    ["category", "项目文档"],
+    ["category", "项目"],
     ["PARA", "Project"]
 ]
 
 const archiveKV = [
-    ["status", "归档"]
+    ["archive", "true"]
 ]
 
 // 导航栏样式：

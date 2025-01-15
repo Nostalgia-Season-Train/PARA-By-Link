@@ -70,7 +70,7 @@ await dv.view("_Obsidian主页/_代码/流动式PARA导航栏")
 - 收藏：只要与当前笔记有链接，强制在导航栏显示
     - status: 收藏
 - 归档：无论如何都不在导航栏显示
-    - status: 归档
+    - archive: true
 
 ## 导航栏
 导航栏的显示策略，按次序从上往下
