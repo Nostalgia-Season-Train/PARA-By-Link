@@ -1,0 +1,36 @@
+/* 标题：居中 */
+.callout[data-callout*=通用简介] .callout-title {
+  padding: 5px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 内容：左右分布 */
+.callout.callout[data-callout*=通用简介] .callout-content {
+  padding: 0px 5px 5px 5px;  /* 两个 .callout 覆盖默认样式，使 padding 生效，而不用加 !important */
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 内容左侧：预览图 */
+.callout[data-callout*=通用简介] .callout-content p {
+  flex: 1;
+}
+
+/* 内容右侧：表格 */
+.callout[data-callout*=通用简介] .callout-content div {
+  flex: 1;
+}
+.callout[data-callout*=通用简介] .callout-content div table {
+  margin: 0; width: 100%; height: 100%;
+}
+.callout[data-callout*=通用简介] .callout-content div table .table-view-thead {
+  display: none;
+}
+.callout[data-callout*=通用简介] .callout-content div table .table-view-tbody {
+  background-color: white;
+}
