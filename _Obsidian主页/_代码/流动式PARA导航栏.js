@@ -103,7 +103,13 @@ if (isArea(dv.current()) || isProject(dv.current())) {
     })
 }
 
-const path = require('path');
+// 通过笔记路径，获取笔记主名（去掉扩展名的文件名）
+const getStem = (notePath) => {
+    const noteName = notePath.split('/').at(-1)
+    const dotIndex = noteName.lastIndexOf('.')
+    const noteStem = noteName.substring(0, dotIndex)
+    return noteStem
+}
 
 if (projectPaths.length) {
     let plan    = "- 计划中\n"
@@ -115,7 +121,7 @@ if (projectPaths.length) {
         let projectStatus = dv.pages(`"${projectPaths[i]}"`)[0]?.status
 
         const projectPath = projectPaths[i]
-        const projectStem = path.basename(projectPath, path.extname(projectPath))
+        const projectStem = getStem(projectPath)
         const projectLink = `[[${projectPath}|${projectStem}]]`
 
         if        (projectStatus == "计划中") {
