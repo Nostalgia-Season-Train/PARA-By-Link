@@ -43,10 +43,11 @@ const getPath = (pageOrLink) => {
 const isArchive = (pageOrLink) => {
     const path = getPath(pageOrLink)
 
+    let notArchive = true  // 检查所有 KV，而不是第一个就返回 true
     for (i = 0; i < archiveKV.length; i++)
-        if (dv.page(path)?.[archiveKV[i][0]] != archiveKV[i][1])
-            return true
-    return false
+        if (dv.page(path)?.[archiveKV[i][0]] == archiveKV[i][1])
+            notArchive = false
+    return notArchive
 }
 
 // 是否为领域、项目
