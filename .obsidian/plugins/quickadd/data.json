@@ -11,13 +11,15 @@
         "format": ""
       },
       "folder": {
-        "enabled": false,
-        "folders": [],
+        "enabled": true,
+        "folders": [
+          "_100-数字花园/收集"
+        ],
         "chooseWhenCreatingNote": false,
         "createInSameFolderAsActiveFile": false,
         "chooseFromSubfolders": false
       },
-      "appendLink": true,
+      "appendLink": false,
       "openFileInNewTab": {
         "enabled": false,
         "direction": "vertical",
@@ -39,13 +41,15 @@
         "format": ""
       },
       "folder": {
-        "enabled": false,
-        "folders": [],
+        "enabled": true,
+        "folders": [
+          "_100-数字花园/收集"
+        ],
         "chooseWhenCreatingNote": false,
         "createInSameFolderAsActiveFile": false,
         "chooseFromSubfolders": false
       },
-      "appendLink": true,
+      "appendLink": false,
       "openFileInNewTab": {
         "enabled": false,
         "direction": "vertical",
@@ -67,13 +71,15 @@
         "format": ""
       },
       "folder": {
-        "enabled": false,
-        "folders": [],
+        "enabled": true,
+        "folders": [
+          "_100-数字花园/收集"
+        ],
         "chooseWhenCreatingNote": false,
         "createInSameFolderAsActiveFile": false,
         "chooseFromSubfolders": false
       },
-      "appendLink": true,
+      "appendLink": false,
       "openFileInNewTab": {
         "enabled": false,
         "direction": "vertical",
