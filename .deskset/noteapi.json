@@ -1,0 +1,6 @@
+{
+    "noteapi-host": "127.0.0.1",
+    "noteapi-port": 6528,
+    "server-host": "127.0.0.1",
+    "server-port": 6527
+}
